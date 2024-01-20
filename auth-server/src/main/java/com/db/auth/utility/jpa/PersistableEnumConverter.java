@@ -1,8 +1,8 @@
 package com.db.auth.utility.jpa;
 
+import com.db.auth.assets.PersistableEnum;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
-import springinfra.assets.PersistableEnum;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.stream.Stream;

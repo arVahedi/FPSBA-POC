@@ -1,5 +1,7 @@
 package com.db.auth.utility.identity;
 
+import com.db.auth.assets.ClaimName;
+import com.db.auth.utility.cryptographic.JksUtility;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.jose4j.json.JsonUtil;
@@ -15,8 +17,6 @@ import org.jose4j.jwt.consumer.JwtConsumerBuilder;
 import org.jose4j.jwt.consumer.JwtContext;
 import org.jose4j.jwx.JsonWebStructure;
 import org.jose4j.lang.JoseException;
-import springinfra.assets.ClaimName;
-import springinfra.utility.cryptographic.JksUtility;
 
 import java.io.IOException;
 import java.security.*;
@@ -26,12 +26,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-//  https://github.com/felx/jose4j-wiki/blob/master/JWT%20Examples.md
 @Slf4j
 @UtilityClass
 public class JwtUtility {
 
-    public final String ISSUER = "SPRING-INFRA";
+    public final String ISSUER = "FPSBA-AUTH-SERVER";
     public final String AUDIENCE = "GENERAL_PUBLIC";
     public final String SUBJECT = "USER_IDENTITY";
     public final int EXPIRATION_TIME_MINUTES = 24 * 60;
@@ -45,8 +44,8 @@ public class JwtUtility {
             /*rsaJsonWebKey = RsaJwkGenerator.generateJwk(2048);
             rsaJsonWebKey.setKeyId("k1");*/
 
-            KeyStore keyStore = JksUtility.getKeyStore(JksUtility.KeyStoreType.JKS, "spring-infra.jks", "123456");
-            KeyPair keyPair = JksUtility.getKeyPair(keyStore, "Spring-infra", "123456");
+            KeyStore keyStore = JksUtility.getKeyStore(JksUtility.KeyStoreType.JKS, "FPSBA-server.jks", "123456");
+            KeyPair keyPair = JksUtility.getKeyPair(keyStore, "FPSBA-server", "123456");
             rsaJsonWebKey = (RsaJsonWebKey) PublicJsonWebKey.Factory.newPublicJwk(keyPair.getPublic());
             rsaJsonWebKey.setPrivateKey(keyPair.getPrivate());
 
@@ -96,7 +95,7 @@ public class JwtUtility {
     }
 
     public Optional<String> getUsernameFromToken(String token) throws InvalidJwtException {
-        return getClaim(token, ClaimName.USERNAME);
+        return getClaim(token, ClaimName.UID);
     }
 
     public Optional<String> getClaim(String token, String claimName) throws InvalidJwtException {

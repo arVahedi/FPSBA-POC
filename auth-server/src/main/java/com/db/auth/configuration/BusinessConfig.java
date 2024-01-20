@@ -23,12 +23,6 @@ public class BusinessConfig implements BaseConfig {
 
     public static final String BEAN_NAME = "businessConfig";
 
-    @Value("${jwt.secret}")
-    private String jwtSecret;
-
-    @Value("${jwt.token.validity}")
-    private long jwtTokenValidity;
-
     @Value("${security.login.failed_attempts.max}")
     private int loginFailureMaxAttempt;
 

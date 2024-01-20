@@ -1,7 +1,8 @@
 package com.db.auth.database.repository.custom;
 
-import springinfra.model.domain.BaseDomain;
 
-public interface CustomRepository<E extends BaseDomain> {
+import com.db.auth.model.entity.BaseEntity;
+
+public interface CustomRepository<E extends BaseEntity<?>> {
 
 }

@@ -1,5 +1,6 @@
 package com.db.auth.database.repository;
 
+import com.db.auth.model.entity.BaseEntity;
 import jakarta.persistence.EntityManager;
 import lombok.Getter;
 import org.apache.commons.lang3.SerializationUtils;
@@ -8,12 +9,11 @@ import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
-import springinfra.model.domain.BaseDomain;
 
 @NoRepositoryBean
 @Transactional
 @Getter
-public class BaseRepositoryImpl<E extends BaseDomain<I>, I extends Number> extends SimpleJpaRepository<E, I> implements BaseRepository<E, I> {
+public class BaseRepositoryImpl<E extends BaseEntity<I>, I extends Number> extends SimpleJpaRepository<E, I> implements BaseRepository<E, I> {
 
     private final EntityManager entityManager;
 
