@@ -8,7 +8,6 @@ import org.jose4j.jwt.consumer.InvalidJwtException;
 import org.jose4j.lang.JoseException;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtException;
@@ -67,9 +66,6 @@ public abstract class BuiltInIdentityProviderConfig extends BaseIdentityProvider
     public EnhancedJwtAuthenticationConverter jwtAuthenticationConverter() {
         EnhancedJwtAuthenticationConverter converter = new EnhancedJwtAuthenticationConverter();
         converter.setPrincipalClaimName(ClaimName.UID);
-        converter.setUserDetailsService(userDetailsService());
         return converter;
     }
-
-    public abstract UserDetailsService userDetailsService();
 }

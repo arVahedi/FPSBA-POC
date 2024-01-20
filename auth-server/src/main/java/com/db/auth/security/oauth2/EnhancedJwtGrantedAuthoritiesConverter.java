@@ -3,7 +3,6 @@ package com.db.auth.security.oauth2;
 import com.db.auth.assets.ClaimName;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -30,13 +29,11 @@ public class EnhancedJwtGrantedAuthoritiesConverter implements Converter<Jwt, Co
     }
 
     private Set<String> getAuthorities(Jwt jwt) {
-        Set<String> authorities = new HashSet<>();
-        Map<String, Object> roles = jwt.getClaim(ClaimName.ROLES);
-        List<String> realmsRoles;
-        if (roles != null && (realmsRoles = (List<String>) roles.get("roles")) != null) {
-            authorities.addAll(realmsRoles);
+        String roles = jwt.getClaim(ClaimName.ROLES);
+        if (roles != null && !roles.isEmpty()) {
+            return Arrays.stream(roles.split(",")).collect(Collectors.toSet());
         }
 
-        return authorities;
+        return Collections.emptySet();
     }
 }

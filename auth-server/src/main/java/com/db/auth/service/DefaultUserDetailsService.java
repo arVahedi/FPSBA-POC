@@ -1,5 +1,6 @@
 package com.db.auth.service;
 
+import com.db.auth.assets.AuthorityType;
 import com.db.auth.assets.UserStatus;
 import com.db.auth.database.repository.SellerInfoRepository;
 import com.db.auth.database.repository.UserRepository;
@@ -26,7 +27,7 @@ public class DefaultUserDetailsService extends BaseService implements UserDetail
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = this.userRepository.findByEmail(username);
+        Optional<User> user = this.userRepository.findByEmailOrUid(username);
 
         if (user.isPresent()) {
             return new org.springframework.security.core.userdetails.User(user.get().getUid(),
@@ -45,7 +46,7 @@ public class DefaultUserDetailsService extends BaseService implements UserDetail
         Optional<SellerInfo> sellerInfo = this.sellerInfoRepository.findByUser(user);
         List<GrantedAuthority> authorities = new ArrayList<>();
         if (sellerInfo.isPresent()) {
-            authorities.add(new SimpleGrantedAuthority("seller"));
+            authorities.add(new SimpleGrantedAuthority(AuthorityType.SELLER_AUTHORITY.getValue()));
         }
 
         return authorities;
