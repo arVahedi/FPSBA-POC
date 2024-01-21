@@ -44,7 +44,7 @@ public class JwtUtility {
             /*rsaJsonWebKey = RsaJwkGenerator.generateJwk(2048);
             rsaJsonWebKey.setKeyId("k1");*/
 
-            KeyStore keyStore = JksUtility.getKeyStore(JksUtility.KeyStoreType.JKS, "FPSBA-server.jks", "123456");
+            KeyStore keyStore = JksUtility.getKeyStore(JksUtility.KeyStoreType.JCEKS, "FPSBA-server.jceks", "123456");
             KeyPair keyPair = JksUtility.getKeyPair(keyStore, "FPSBA-server", "123456");
             rsaJsonWebKey = (RsaJsonWebKey) PublicJsonWebKey.Factory.newPublicJwk(keyPair.getPublic());
             rsaJsonWebKey.setPrivateKey(keyPair.getPrivate());

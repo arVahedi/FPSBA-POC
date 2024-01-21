@@ -3,6 +3,8 @@ package com.db.auth.controller.advisor;
 
 import com.db.auth.assets.ErrorCode;
 import com.db.auth.assets.ResponseTemplate;
+import com.db.auth.exception.ObjectMappingException;
+import com.db.auth.exception.UniqueConstraintAlreadyExistsException;
 import com.db.auth.exception.UsernameAlreadyExistsException;
 import com.db.auth.utility.identity.IdentityUtility;
 import jakarta.persistence.EntityNotFoundException;
@@ -47,6 +49,20 @@ public class RestExceptionAdvisor extends ResponseEntityExceptionHandler {
         log.error(ex.getMessage(), ex);
         List<String> messages = ex.getConstraintViolations().stream().map(ConstraintViolation::getMessage).toList();
         ResponseTemplate<List<String>> responseTemplate = new ResponseTemplate<>(HttpStatus.BAD_REQUEST, messages);
+        return new ResponseEntity<>(responseTemplate, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(UniqueConstraintAlreadyExistsException.class)
+    public ResponseEntity<ResponseTemplate<String>> handleConstraintViolationException(UniqueConstraintAlreadyExistsException ex) {
+        log.error(ex.getMessage(), ex);
+        ResponseTemplate<String> responseTemplate = new ResponseTemplate<>(HttpStatus.BAD_REQUEST, ex.getMessage());
+        return new ResponseEntity<>(responseTemplate, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ObjectMappingException.class)
+    public ResponseEntity<ResponseTemplate<String>> handleConstraintViolationException(ObjectMappingException ex) {
+        log.error(ex.getMessage(), ex);
+        ResponseTemplate<String> responseTemplate = new ResponseTemplate<>(HttpStatus.BAD_REQUEST, ex.getMessage());
         return new ResponseEntity<>(responseTemplate, HttpStatus.BAD_REQUEST);
     }
 

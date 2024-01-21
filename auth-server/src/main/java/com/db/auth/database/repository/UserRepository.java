@@ -11,6 +11,5 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public interface UserRepository extends BaseRepository<User, Long> {
 
-    @Query("select u from User u where u.email = :username or u.uid = :username")
-    Optional<User> findByEmailOrUid(String username);
+    Optional<User> findByEmail(String username);
 }

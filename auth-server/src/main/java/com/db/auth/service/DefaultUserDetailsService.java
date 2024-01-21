@@ -27,7 +27,7 @@ public class DefaultUserDetailsService extends BaseService implements UserDetail
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = this.userRepository.findByEmailOrUid(username);
+        Optional<User> user = this.userRepository.findByEmail(username);
 
         if (user.isPresent()) {
             return new org.springframework.security.core.userdetails.User(user.get().getUid(),

@@ -1,9 +1,13 @@
 package com.db.auth.model.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "seller_info")
+@Getter
+@Setter
 public class SellerInfo extends BaseEntity<Long> {
 
     @Basic

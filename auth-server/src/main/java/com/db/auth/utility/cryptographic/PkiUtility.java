@@ -22,7 +22,7 @@ public class PkiUtility {
             throws CryptographyException, NoSuchAlgorithmException, InvalidKeyException, NoSuchPaddingException, BadPaddingException,
             IllegalBlockSizeException {
 
-        Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPWITHSHA-256ANDMGF1PADDING");
+        Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.ENCRYPT_MODE, key);
         final byte[] plainTextBytes = message.getBytes(StandardCharsets.UTF_8);
         final byte[] cipherText = cipher.doFinal(plainTextBytes);
@@ -33,7 +33,7 @@ public class PkiUtility {
             throws NoSuchAlgorithmException, InvalidKeyException, NoSuchPaddingException, BadPaddingException, IllegalBlockSizeException,
             CryptographyException {
 
-        Cipher decipher = Cipher.getInstance("RSA/ECB/OAEPWITHSHA-256ANDMGF1PADDING");
+        Cipher decipher = Cipher.getInstance("AES");;
         decipher.init(Cipher.DECRYPT_MODE, key);
         final byte[] plainText = decipher.doFinal(Base64.decode(message));
         return new String(plainText, StandardCharsets.UTF_8);
