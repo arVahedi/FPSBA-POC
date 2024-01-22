@@ -1,7 +1,7 @@
-package com.db.auth.utility.identity;
+package com.db.lib.utility.identity;
 
-import com.db.auth.assets.ClaimName;
-import com.db.auth.utility.cryptographic.JksUtility;
+import com.db.lib.assets.ClaimName;
+import com.db.lib.utility.cryptographic.JksUtility;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.jose4j.json.JsonUtil;
@@ -41,10 +41,7 @@ public class JwtUtility {
 
     static {
         try {
-            /*rsaJsonWebKey = RsaJwkGenerator.generateJwk(2048);
-            rsaJsonWebKey.setKeyId("k1");*/
-
-            KeyStore keyStore = JksUtility.getKeyStore(JksUtility.KeyStoreType.JCEKS, "FPSBA-server.jceks", "123456");
+            KeyStore keyStore = JksUtility.getKeyStore(JksUtility.KeyStoreType.JKS, "FPSBA-server.jks", "123456");
             KeyPair keyPair = JksUtility.getKeyPair(keyStore, "FPSBA-server", "123456");
             rsaJsonWebKey = (RsaJsonWebKey) PublicJsonWebKey.Factory.newPublicJwk(keyPair.getPublic());
             rsaJsonWebKey.setPrivateKey(keyPair.getPrivate());

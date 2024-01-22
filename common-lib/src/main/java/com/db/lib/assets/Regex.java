@@ -1,4 +1,4 @@
-package com.db.auth.assets;
+package com.db.lib.assets;
 
 public class Regex {
 

@@ -1,6 +1,6 @@
-package com.db.auth.utility.cryptographic;
+package com.db.lib.utility.cryptographic;
 
-import com.db.auth.exception.CryptographyException;
+import com.db.lib.exception.CryptographyException;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.bouncycastle.util.encoders.Base64;

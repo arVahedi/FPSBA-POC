@@ -1,4 +1,4 @@
-package com.db.auth.exception;
+package com.db.lib.exception;
 
 public class CryptographyException extends BaseRuntimeException {
 

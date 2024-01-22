@@ -1,4 +1,4 @@
-package com.db.auth.utility.identity;
+package com.db.lib.utility.identity;
 
 import lombok.experimental.UtilityClass;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;

@@ -1,6 +1,6 @@
-package com.db.auth.utility.jpa;
+package com.db.lib.utility.jpa;
 
-import com.db.auth.assets.PersistableEnum;
+import com.db.lib.assets.PersistableEnum;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 

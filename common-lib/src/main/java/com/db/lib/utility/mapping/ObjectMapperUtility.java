@@ -1,7 +1,6 @@
-package com.db.auth.utility.mapping;
+package com.db.lib.utility.mapping;
 
-import com.db.auth.SpringContext;
-import com.db.auth.exception.ObjectMappingException;
+import com.db.lib.exception.ObjectMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +19,7 @@ public class ObjectMapperUtility {
     @SafeVarargs
     public void convertMapToObject(Map<String, Object> valuesMap, Object destinationObject, Class<? extends Annotation>... ignoreAnnotations) {
 
-        Object sourceObject = SpringContext.getApplicationContext().getBean(ObjectMapper.class).convertValue(valuesMap, destinationObject.getClass());
+        Object sourceObject = new ObjectMapper().convertValue(valuesMap, destinationObject.getClass());
         Method[] destinationMethods = destinationObject.getClass().getMethods();
         List<Class<? extends Annotation>> ignoreAnnotationsList = Arrays.asList(ignoreAnnotations);
 

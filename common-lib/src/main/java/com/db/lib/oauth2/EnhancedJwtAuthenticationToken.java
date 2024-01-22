@@ -1,4 +1,4 @@
-package com.db.auth.security.oauth2;
+package com.db.lib.oauth2;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.SpringSecurityCoreVersion;

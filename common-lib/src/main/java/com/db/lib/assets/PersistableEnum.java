@@ -1,4 +1,4 @@
-package com.db.auth.assets;
+package com.db.lib.assets;
 
 /**
  * This interface should be implemented by all enums that want to be able to be persisted in the database.

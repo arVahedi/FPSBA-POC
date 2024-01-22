@@ -1,4 +1,4 @@
-package com.db.auth.security.oauth2;
+package com.db.lib.oauth2;
 
 import lombok.NonNull;
 import lombok.Setter;

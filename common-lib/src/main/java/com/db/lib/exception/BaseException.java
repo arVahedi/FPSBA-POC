@@ -1,4 +1,4 @@
-package com.db.auth.exception;
+package com.db.lib.exception;
 
 public abstract class BaseException extends Exception {
 
