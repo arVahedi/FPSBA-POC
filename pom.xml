@@ -26,7 +26,8 @@
 
     <modules>
         <module>common-lib</module>
-        <module>auth-server</module>
-        <module>auction-server</module>
+        <module>user-service</module>
+        <module>auction-service</module>
+        <module>product-service</module>
     </modules>
 </project>
