@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 public class BidDto extends BaseCrudDto<Bid, Long> {
     private long userUid;
-    private int auctionId;
+    private long auctionId;
     private int price;
 }

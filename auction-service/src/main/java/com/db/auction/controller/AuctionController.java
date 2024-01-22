@@ -50,7 +50,6 @@ public class AuctionController extends BaseRestController {
     }
 
     @Operation(summary = "Retrieving all auctions of current authenticated seller", description = "Retrieving all auctions of current authenticated seller")
-    @PreAuthorize("hasAuthority(T(com.db.lib.assets.AuthorityType).SELLER_AUTHORITY)")
     @GetMapping("/own")
     public ResponseEntity<ResponseTemplate<List<AuctionDto>>> retrieveAllSellerProduct() {
         List<Auction> auctions = this.auctionService.retrieveAllAuctionsOfSeller(IdentityUtility.getUsername().orElseThrow(() -> new AccessDeniedException("Authenticated user is not recognized")));
@@ -65,6 +64,7 @@ public class AuctionController extends BaseRestController {
     }
 
     @Operation(summary = "Retrieving all auctions", description = "Retrieving all auctions")
+    @PreAuthorize("isAuthenticated()")
     @GetMapping
     public ResponseEntity<ResponseTemplate<List<AuctionDto>>> list(Pageable pageable) {
         List<Auction> auctions = this.auctionService.list(pageable);

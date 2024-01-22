@@ -18,7 +18,7 @@ public class Bid extends LogicalDeletableEntity<Long> {
     @Basic
     @Column(name = "price")
     private int price;
-    @OneToOne(targetEntity = Auction.class, fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @OneToOne(targetEntity = Auction.class, fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE})
     @JoinColumn(name = "auction_id", referencedColumnName = "id")
     private Auction auction;
 }
